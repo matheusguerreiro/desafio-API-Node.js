@@ -23,11 +23,11 @@ describe('routes', () => {
     expect(res.statusCode).toEqual(200)
   })
 
-  it('post/markers(Faltando coordenada), deve retornar status 500.', async () => {
+  it('post/markers(Faltando coordenada), deve retornar status 422.', async () => {
     const res = await request(app)
     .post('/markers')
     .send({position: {lng: -35.5353}})
-    expect(res.statusCode).toEqual(500)
+    expect(res.statusCode).toEqual(422)
   })
 
   it('post/markers, deve retornar status 201.', async () => {
@@ -37,11 +37,11 @@ describe('routes', () => {
     expect(res.statusCode).toEqual(201)
   })
 
-  it('put/markers/id(Inválido), deve retornar status 500.', async () => {
+  it('put/markers/id(Inválido), deve retornar status 404.', async () => {
     const res = await request(app)
     .put('/markers/idInválido')
     .send({position: {lat: -35.5353, lng: -15.5151}})
-    expect(res.statusCode).toEqual(500)
+    expect(res.statusCode).toEqual(404)
   })
   
   it('put/markers/id, deve retornar status 200.', async () => {
